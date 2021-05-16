@@ -44,7 +44,6 @@ describe("Token contract", function() {
       'Visor',
       await visorFactory.callStatic['create()'](),
     )
-
     await visorFactory['create()']()
 
     // Deploy Hypervisor & required factoriees
@@ -137,6 +136,7 @@ describe("Token contract", function() {
       amount*3,
       nonce,
     )
+
     await expect(mainframe.stake(hypervisor.address, visor.address, amount*3, permission)).to.be.revertedWith("Hypervisor: Stake limit exceeded");
 
     // Test RAGEQUIT
@@ -158,6 +158,7 @@ describe("Token contract", function() {
     lockSetCount = await visor.getLockSetCount();
     expect(lockSetCount).to.equal(1);
     expect(balanceLocked).to.equal(amount*2);
+
 
     await visor.rageQuit(hypervisor.address, stakingToken.address);
   });
